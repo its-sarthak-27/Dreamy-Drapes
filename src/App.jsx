@@ -4,36 +4,61 @@ import {
   Route,
 } from "react-router-dom"
 
+import { useState } from "react"
+
 import Navbar from "./components/Navbar"
 import PostCard from "./components/PostCard"
 import ProductDetail from "./pages/ProductDetail"
-import { useState, useEffect } from "react"
 
 import { posts } from "./data/products"
 
 function Home() {
 
+  const [search, setSearch] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("All")
+
+  const filteredPosts = posts.filter((post) => {
+
+    const matchesSearch =
+      post.title.toLowerCase().includes(search.toLowerCase())
+
+    const matchesCategory =
+      selectedCategory === "All" ||
+      post.category === selectedCategory
+
+    return matchesSearch && matchesCategory
+  })
+
   return (
 
     <div className="bg-black min-h-screen text-white">
 
-      <Navbar />
+      <Navbar
+        search={search}
+        setSearch={setSearch}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
 
-      <section className="text-center py-16 px-5">
+      <section className="text-center py-24 px-5">
 
-        <h1 className="text-6xl font-bold">
-          Discover Your Style
-        </h1>
-
-        <p className="text-gray-400 mt-5 text-lg">
-          Fashion inspiration curated for you.
+        <p className="text-gray-400 uppercase tracking-[6px]">
+          Fashion Affiliate Store
         </p>
+
+        <h1 className="text-6xl md:text-7xl font-bold mt-6 leading-tight">
+
+          Curated Fashion
+          <br />
+          For Every Style
+
+        </h1>
 
       </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-10 pb-14">
+      <div className="columns-1 md:columns-2 lg:columns-3 px-6 pb-14">
 
-        {posts.map((post) => (
+        {filteredPosts.map((post) => (
           <PostCard
             key={post.id}
             post={post}
