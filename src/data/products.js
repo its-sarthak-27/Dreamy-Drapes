@@ -89,7 +89,7 @@ export const posts = [
 
     title: "Footweas",
 
-    category: "sandels",
+    category: "Footwear",
 
     coverImage:
       "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcT5hWcMRgJhyXCl6poMVnZYeZEt80W1w2hbdU5QYEDpDy6VEZz5BAD-scLEQ36OzHDjTaDCjd6-yINTd5IkVp1u8__UnnTk-mp_8UXuP9CGh9A-BH7m2Z5x49s",
