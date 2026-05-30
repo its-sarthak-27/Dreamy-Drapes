@@ -1,27 +1,56 @@
 import { useState } from "react"
+
 import { HiMenu, HiX } from "react-icons/hi"
 
 function Navbar({
+
   search,
+
   setSearch,
+
   selectedCategory,
+
   setSelectedCategory,
+
+  darkMode,
+
+  setDarkMode,
+
 }) {
 
   const [menuOpen, setMenuOpen] = useState(false)
 
   const categories = [
+
     "All",
+
     "Mens",
+
     "Womens",
+
     "Watches",
+
     "Jewelleries",
+
     "Footwear",
+
   ]
 
   return (
 
-    <nav className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-zinc-800">
+    <nav
+
+      className={`sticky top-0 z-50 border-b backdrop-blur-md transition duration-300 ${
+
+        darkMode
+
+          ? "bg-black/90 border-white/10 text-white"
+
+          : "bg-white/90 border-black/10 text-black"
+
+      }`}
+
+    >
 
       <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between gap-5">
 
@@ -34,11 +63,25 @@ function Navbar({
         <div className="hidden md:flex flex-1 justify-center">
 
           <input
+
             type="text"
+
             placeholder="Search outfits..."
+
             value={search}
+
             onChange={(e) => setSearch(e.target.value)}
-            className="bg-zinc-900 px-5 py-3 rounded-2xl outline-none w-full max-w-md"
+
+            className={`px-5 py-3 rounded-2xl outline-none w-full max-w-md transition ${
+
+              darkMode
+
+                ? "bg-zinc-900 text-white"
+
+                : "bg-gray-200 text-black"
+
+            }`}
+
           />
 
         </div>
@@ -49,13 +92,29 @@ function Navbar({
           {categories.map((category) => (
 
             <button
+
               key={category}
+
               onClick={() => setSelectedCategory(category)}
+
               className={`px-5 py-2 rounded-full transition ${
+
                 selectedCategory === category
-                  ? "bg-white text-black"
-                  : "bg-zinc-900 text-white hover:bg-zinc-800"
+
+                  ? darkMode
+
+                    ? "bg-white text-black"
+
+                    : "bg-black text-white"
+
+                  : darkMode
+
+                  ? "bg-zinc-900 text-white hover:bg-zinc-800"
+
+                  : "bg-gray-200 text-black hover:bg-gray-300"
+
               }`}
+
             >
 
               {category}
@@ -66,15 +125,44 @@ function Navbar({
 
         </div>
 
-        {/* MOBILE MENU BUTTON */}
-        <button
-          className="lg:hidden text-3xl"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
+        {/* RIGHT SIDE */}
+        <div className="flex items-center gap-3">
 
-          {menuOpen ? <HiX /> : <HiMenu />}
+          {/* DARK MODE BUTTON */}
+          <button
 
-        </button>
+            onClick={() => setDarkMode(!darkMode)}
+
+            className={`px-4 py-2 rounded-xl transition ${
+
+              darkMode
+
+                ? "bg-zinc-800 text-white hover:bg-zinc-700"
+
+                : "bg-gray-200 text-black hover:bg-gray-300"
+
+            }`}
+
+          >
+
+            {darkMode ? "☀️" : "🌙"}
+
+          </button>
+
+          {/* MOBILE MENU BUTTON */}
+          <button
+
+            className="lg:hidden text-3xl"
+
+            onClick={() => setMenuOpen(!menuOpen)}
+
+          >
+
+            {menuOpen ? <HiX /> : <HiMenu />}
+
+          </button>
+
+        </div>
 
       </div>
 
@@ -84,11 +172,25 @@ function Navbar({
         <div className="lg:hidden px-6 pb-6">
 
           <input
+
             type="text"
+
             placeholder="Search outfits..."
+
             value={search}
+
             onChange={(e) => setSearch(e.target.value)}
-            className="bg-zinc-900 px-5 py-3 rounded-2xl outline-none w-full"
+
+            className={`px-5 py-3 rounded-2xl outline-none w-full transition ${
+
+              darkMode
+
+                ? "bg-zinc-900 text-white"
+
+                : "bg-gray-200 text-black"
+
+            }`}
+
           />
 
           <div className="flex flex-wrap gap-3 mt-5">
@@ -96,16 +198,35 @@ function Navbar({
             {categories.map((category) => (
 
               <button
+
                 key={category}
+
                 onClick={() => {
+
                   setSelectedCategory(category)
+
                   setMenuOpen(false)
+
                 }}
+
                 className={`px-5 py-2 rounded-full transition ${
+
                   selectedCategory === category
-                    ? "bg-white text-black"
-                    : "bg-zinc-900 text-white"
+
+                    ? darkMode
+
+                      ? "bg-white text-black"
+
+                      : "bg-black text-white"
+
+                    : darkMode
+
+                    ? "bg-zinc-900 text-white"
+
+                    : "bg-gray-200 text-black"
+
                 }`}
+
               >
 
                 {category}
