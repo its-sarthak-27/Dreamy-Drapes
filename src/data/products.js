@@ -10,8 +10,11 @@ export const posts = [
 
     category: "Womens",
 
-    coverImage:
+    images:[
+      shirt,
       p1,
+      p2,
+    ],
 
     products: [
       {
@@ -41,8 +44,10 @@ export const posts = [
 
     category: "Womens",
 
-    coverImage:
+    images:[
+      p1,
       p2,
+    ],
 
     products: [
       {
@@ -72,6 +77,9 @@ export const posts = [
 
     category: "Watches",
 
+    images:[
+      "https://images.unsplash.com/photo-1523170335258-f5ed11844a49",
+    ],
     coverImage:
       "https://images.unsplash.com/photo-1523170335258-f5ed11844a49",
 
@@ -89,8 +97,11 @@ export const posts = [
 
     title: "Footweas",
 
-    category: "Footwear",
+    category: "sandels",
 
+    images:[
+      "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcT5hWcMRgJhyXCl6poMVnZYeZEt80W1w2hbdU5QYEDpDy6VEZz5BAD-scLEQ36OzHDjTaDCjd6-yINTd5IkVp1u8__UnnTk-mp_8UXuP9CGh9A-BH7m2Z5x49s",
+    ],
     coverImage:
       "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcT5hWcMRgJhyXCl6poMVnZYeZEt80W1w2hbdU5QYEDpDy6VEZz5BAD-scLEQ36OzHDjTaDCjd6-yINTd5IkVp1u8__UnnTk-mp_8UXuP9CGh9A-BH7m2Z5x49s",
 
