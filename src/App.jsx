@@ -4,7 +4,7 @@ import {
   Route,
 } from "react-router-dom"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import Navbar from "./components/Navbar"
 import PostCard from "./components/PostCard"
@@ -16,6 +16,25 @@ function Home() {
 
   const [search, setSearch] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("All")
+
+  const [darkMode, setDarkMode] =
+  useState(() => {
+
+    const savedMode =
+      localStorage.getItem("darkMode")
+
+    return savedMode === null
+      ? true
+      : JSON.parse(savedMode)
+  })
+  useEffect(() => {
+
+  localStorage.setItem(
+    "darkMode",
+    JSON.stringify(darkMode)
+  )
+
+}, [darkMode])
 
   const filteredPosts = posts.filter((post) => {
 
@@ -31,13 +50,21 @@ function Home() {
 
   return (
 
-    <div className="bg-black min-h-screen text-white">
+    <div
+   className={`min-h-screen transition duration-300 ${
+    darkMode
+      ? "bg-black text-white"
+      : "bg-[#f5f5f5] text-black"
+  }`}
+>
 
       <Navbar
         search={search}
         setSearch={setSearch}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
       />
 
       <section className="text-center py-24 px-5">
@@ -56,12 +83,13 @@ function Home() {
 
       </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 pb-14 max-w-7xl mx-auto">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 px-4 pb-14 max-w-[1600px] mx-auto">
 
         {filteredPosts.map((post) => (
           <PostCard
             key={post.id}
             post={post}
+            darkMode={darkMode}
           />
         ))}
 
